@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './App.css';
 import Form from './Components/Form'
 import Member from './Components/Member'
-import axios from 
+
 
 const initialFormValues = {
   name: '',
@@ -12,7 +12,7 @@ const initialFormValues = {
 
 function App() {
   const [teamList, setTeamList] = useState([])
-  const [formValues, setFormValues] = useState()
+  const [formValues, setFormValues] = useState(initialFormValues)
 
   const updateForm = (inputName, inputValue) => {
     setFormValues({...formValues, [inputName]: inputValue})
@@ -26,7 +26,7 @@ function App() {
     }
 
     setTeamList(teamList.concat(newMember))
-    setFormValues()
+    setFormValues(initialFormValues)
 
     
   }
@@ -37,11 +37,11 @@ function App() {
     <Form
       values={formValues}
       update={updateForm}
-      sumbit={submitForm}
+      submit={submitForm}
     />
     
-    {teamList.map(mem => {
-      return <Member key={mem.id} info={mem} />
+    {teamList.map((mem, idx) => {
+      return <Member key={idx} info={mem} />
     })}
     </>
   );

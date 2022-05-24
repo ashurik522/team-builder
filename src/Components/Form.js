@@ -4,11 +4,15 @@ export default function TeamForm(props) {
     const { values, update, submit } = props;
 
     const onChange = evt =>{
+        const name = evt.target.name;
+        const value = evt.target.value;
 
+        update(name, value)
     }
 
     const onSubmit = evt => {
         evt.preventDefault()
+        submit()
     }
 
 
@@ -37,9 +41,10 @@ export default function TeamForm(props) {
                 <label>Role
                     <select value={values.role} name="role" onChange={onChange}>
                         <option value="">Select a Role</option>
-                        <option value="Instructor">Instructor</option>
-                        <option value="Student">Student</option>
-                        <option value="TA">TA</option>
+                        <option value="FrontEnd">Front-end Developer</option>
+                        <option value="BackEnd">Back-end Developer</option>
+                        <option value="DataAnalyst">Data Analyst</option>
+                        <option value="Project Manager">Project Manager</option>
                     </select>
                 </label>
                 <div className='submit'>
