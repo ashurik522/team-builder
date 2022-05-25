@@ -13,6 +13,7 @@ const initialFormValues = {
 function App() {
   const [teamList, setTeamList] = useState([])
   const [formValues, setFormValues] = useState(initialFormValues)
+  const [formErrors, setFormErrors] = useState("")
 
   const updateForm = (inputName, inputValue) => {
     setFormValues({...formValues, [inputName]: inputValue})
@@ -25,6 +26,11 @@ function App() {
       role: formValues.role
     }
 
+    if(!newMember.name){
+      setFormErrors("Please Enter Name");
+      return;
+    }
+
     setTeamList(teamList.concat(newMember))
     setFormValues(initialFormValues)
 
@@ -34,6 +40,7 @@ function App() {
   return (
     <>
     <header>Team Builder Form</header>
+    {formErrors && <h3>{formErrors}</h3>}
     <Form
       values={formValues}
       update={updateForm}
